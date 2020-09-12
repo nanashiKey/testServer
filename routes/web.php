@@ -14,3 +14,20 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+/**
+ * used for generating string random
+ */
+$router->get('/key', function(){
+    $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charLength = strlen($chars);
+    $randomString = '';
+    for ($i = 0; $i < 32; $i++) {
+        $randomString .= $chars[rand(0, $charLength - 1)];
+    }
+    return $randomString;
+});
+
+/**
+ * used for getAllBarang
+ */
+$router->get('/getallbarang', 'BarangController@createData');
