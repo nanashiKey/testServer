@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHadiahTable extends Migration
+class CreateHadiahsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHadiahTable extends Migration
      */
     public function up()
     {
-        Schema::create('hadiah', function (Blueprint $table) {
+        Schema::create('hadiahs', function (Blueprint $table) {
             $table->id();
             $table->string('namahadiah');
             $table->integer('point');
@@ -28,6 +28,6 @@ class CreateHadiahTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hadiah');
+        Schema::dropIfExists('hadiahs');
     }
 }

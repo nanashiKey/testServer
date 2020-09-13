@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransaksiTable extends Migration
+class CreateRedeemedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTransaksiTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('redeemeds', function (Blueprint $table) {
             $table->id();
-            $table->integer('itemid');
+            $table->integer('hadiahid');
             $table->integer('usrid');
-            $table->boolean('status');
+            $table->boolean('redeemed');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateTransaksiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('redeemeds');
     }
 }

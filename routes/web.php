@@ -12,7 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "hello this is test server";
 });
 /**
  * used for generating string random
@@ -28,6 +28,20 @@ $router->get('/key', function(){
 });
 
 /**
- * used for getAllBarang
+ * used for user
  */
-$router->get('/getallbarang', 'BarangController@createData');
+$router->post('/register', 'UserController@registerUser');
+$router->post('/masuk', 'UserController@userLogin');
+$router->post('/deluser', 'UserController@delUser');
+
+/**
+ * used for barang
+ */
+$router->get('/getallbarang', 'BarangController@getAllBarang');
+$router->post('/uploadbarang', 'BarangController@createData');
+$router->post('/deletebarang', 'BarangController@deleteBarang');
+/**
+ * used for hadiah
+ */
+$router->get('/getallhadiah', 'HadiahController@getAllHadiah');
+$router->post('/uploadhadiah', 'HadiahController@createData');
