@@ -98,4 +98,22 @@ class BarangController extends Controller{
             return response()->json($response, 400);
         }
     }
+
+    public function updateBarang(Request $req, $id){
+        $namabarang = $req->namabarang;
+        $hargabarang = $req->hargabarang;
+        $stock = $req->stock;
+
+        $barang = Barang::where('id', $id)->first();
+        $barang->namabarang = $namabarang;
+        $barang->hargabarang = $hargabarang;
+        $barang->stock = $stock;
+        $barang->save();
+        $response=[
+            'status'=>'success',
+            'message'=>'update berhasil',
+        ];
+
+        return response()->json($response, 200);
+    }
 }

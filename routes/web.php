@@ -42,10 +42,13 @@ $router->get('/user/{id}', 'UserController@userById');
 $router->get('/getallbarang', 'BarangController@getAllBarang');
 $router->post('/uploadbarang', 'BarangController@createData');
 $router->post('/deletebarang', 'BarangController@deleteBarang');
+$router->post('/barang/{id}', 'BarangController@updateBarang');
 $router->post('/beli', 'BarangController@beliItem');
-
 /**
  * used for hadiah
  */
 $router->get('/getallhadiah', 'HadiahController@getAllHadiah');
 $router->post('/uploadhadiah', 'HadiahController@createData');
+$router->post('/redeemed','HadiahController@redeemedPoint');
+$router->post('/hadiah/{id}', 'HadiahController@updateHadiah');
+$router->post('/delhadiah/{id}', 'HadiahController@deleteHadiah');
