@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Models\Barang;
+use App\Http\Models\Transaksi;
+use App\User;
+
 
 class BarangController extends Controller{
 
@@ -64,5 +67,35 @@ class BarangController extends Controller{
         }
     }
 
-
+    public function beliItem(Request $req){
+        $id = $req->userid;
+        $barangid = $req->barangid;
+        $barang = Barang::where('id', $barangid)->first();
+        $user = User::where('id', $id)->first();
+        if($barang->stock != 0){
+            $barang->stock = $barang->stock - 1;
+            $barang->save();
+            $user->point = $user->point + 5;
+            $user->save();
+            $transaksi = Transaksi::create([
+                'itemid' => $barangid,
+                'usrid' => $id,
+                'status' => 1
+            ]);
+            
+            $response=[
+                'status'=>'success',
+                'message'=>'pembelian berhasil',
+            ];
+    
+            return response()->json($response, 200);
+        }else{
+            $response=[
+                'status'=>'failed',
+                'message'=>'pembelian gagal, barang habis',
+            ];
+    
+            return response()->json($response, 400);
+        }
+    }
 }

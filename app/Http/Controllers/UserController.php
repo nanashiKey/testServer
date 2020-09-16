@@ -36,7 +36,7 @@ class UserController extends Controller{
         return response()->json($response, 400);
         }
     }
-    
+
     public function userLogin(Request $req){
         $username = $req->username;
         $pass = $req->password;
@@ -60,6 +60,7 @@ class UserController extends Controller{
                 $response=[
                     'status'=>'success',
                     'message'=>'Login berhasil',
+                    'data'=>[$cekUser]
                 ];
         
                 return response()->json($response, 200);
@@ -92,6 +93,43 @@ class UserController extends Controller{
                 'message'=>'user berhasil dihapus',
             ];
     
+            return response()->json($response, 200);
+        }
+    }
+
+    public function getAllUser(){
+        $users = User::all();
+
+        if($users->isEmpty()){
+            $response=[
+                'status'=>'unsuccessfull',
+                'message'=>'user tidak ditemukan'
+            ];
+            return response()->json($response, 400);
+        }else{
+            $response=[
+                'status'=>'success',
+                'message'=>'list all user',
+                'data' => $users,
+            ];
+            return response()->json($response, 200);
+        }
+    }
+
+    public function userById($id){
+        $checkUser = User::where('id', $id)->first();
+        if($checkUser == null){
+            $response=[
+                'status'=>'success',
+                'message'=>'user tidak ditemukan',
+            ];
+            return response()->json($response, 400);
+        }else{
+            $response=[
+                'status'=>'success',
+                'message'=>'user list',
+                'data' => $checkUser,
+            ];
             return response()->json($response, 200);
         }
     }

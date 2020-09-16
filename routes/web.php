@@ -30,9 +30,11 @@ $router->get('/key', function(){
 /**
  * used for user
  */
+$router->get('/getalluser', 'UserController@getAllUser');
 $router->post('/register', 'UserController@registerUser');
 $router->post('/masuk', 'UserController@userLogin');
 $router->post('/deluser', 'UserController@delUser');
+$router->get('/user/{id}', 'UserController@userById');
 
 /**
  * used for barang
@@ -40,6 +42,8 @@ $router->post('/deluser', 'UserController@delUser');
 $router->get('/getallbarang', 'BarangController@getAllBarang');
 $router->post('/uploadbarang', 'BarangController@createData');
 $router->post('/deletebarang', 'BarangController@deleteBarang');
+$router->post('/beli', 'BarangController@beliItem');
+
 /**
  * used for hadiah
  */

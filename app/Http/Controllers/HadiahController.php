@@ -42,6 +42,5 @@ class HadiahController extends Controller{
             ];
             return response()->json($response, 200);
         }
-
     }
 }
